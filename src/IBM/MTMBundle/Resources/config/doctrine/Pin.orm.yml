@@ -14,4 +14,11 @@ IBM\MTMBundle\Entity\Pin:
             type: string
             nullable: false
             length: 4
+    oneToOne:
+        customer:
+            targetEntity: Customer
+            inversedBy: pin
+            joinColumn:
+               name: acct
+               referencedColumnName: ACCT 
     lifecycleCallbacks: {  }

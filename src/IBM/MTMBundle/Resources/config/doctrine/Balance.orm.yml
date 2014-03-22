@@ -10,9 +10,16 @@ IBM\MTMBundle\Entity\Balance:
             id: true
     fields:
         balance:
-            column: PIN
+            column: BALANCE
             type: decimal
             precision: 7
             scale: 2
             nullable: false
+    oneToOne:
+        customer:
+            targetEntity: Customer
+            inversedBy: balance
+            joinColumn:
+               name: acct
+               referencedColumnName: ACCT 
     lifecycleCallbacks: {  }

@@ -39,4 +39,11 @@ IBM\MTMBundle\Entity\Customer:
             type: string
             length: 2
             nullable: false
+    oneToOne:
+        balance:
+            targetEntity: Balance
+            mappedBy: customer
+        pin:
+            targetEntity: Pin
+            mappedBy: customer
     lifecycleCallbacks: {  }

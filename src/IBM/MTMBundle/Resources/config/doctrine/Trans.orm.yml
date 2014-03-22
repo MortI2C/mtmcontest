@@ -2,13 +2,19 @@ IBM\MTMBundle\Entity\Trans:
     type: entity
     table: TRANS
     id:
+        id:
+            column: ID
+            type: integer
+            nullable: false
+            unsigned: false
+            generator:
+               strategy: IDENTITY
+    fields:
         account:
             column: ACCT
             type: string
             length: 12
             nullable: false
-            id: true
-    fields:
         amount:
             column: AMOUNT
             type: decimal
@@ -28,4 +34,10 @@ IBM\MTMBundle\Entity\Trans:
             column: TIME_END
             type: datetime
             nullable: false
-    lifecycleCallbacks: {  }
+    manyToOne:
+        customer:
+            targetEntity: Customer
+            joinColumn:
+               name: ACCT
+               referencedColumnName: ACCT 
+    lifecycleCallbacks: { }
