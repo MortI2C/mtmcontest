@@ -1,0 +1,4 @@
+ibmmtm:
+    resource: "@IBMMTMBundle/Resources/config/routing.yml"
+    prefix:   /
+

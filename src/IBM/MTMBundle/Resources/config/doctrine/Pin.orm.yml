@@ -1,0 +1,17 @@
+IBM\MTMBundle\Entity\Pin:
+    type: entity
+    table: PIN
+    id:
+        account:
+            column: ACCT
+            type: string
+            length: 12
+            nullable: false
+            id: true
+    fields:
+        pin:
+            column: PIN
+            type: string
+            nullable: false
+            length: 4
+    lifecycleCallbacks: {  }

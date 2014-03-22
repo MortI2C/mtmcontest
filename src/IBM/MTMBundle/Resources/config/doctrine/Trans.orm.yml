@@ -1,0 +1,31 @@
+IBM\MTMBundle\Entity\Trans:
+    type: entity
+    table: TRANS
+    id:
+        account:
+            column: ACCT
+            type: string
+            length: 12
+            nullable: false
+            id: true
+    fields:
+        amount:
+            column: AMOUNT
+            type: decimal
+            precision: 7
+            scale: 2
+            nullable: false
+        type:
+            column: TRNTYPE
+            type: string
+            length: 1
+            nullable: false
+        timeStart:
+            column: TIME_START
+            type: datetime
+            nullable: false
+        timeEnd:
+            column: TIME_END
+            type: datetime
+            nullable: false
+    lifecycleCallbacks: {  }
