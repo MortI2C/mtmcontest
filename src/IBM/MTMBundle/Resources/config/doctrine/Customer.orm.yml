@@ -1,0 +1,42 @@
+IBM\MTMBundle\Entity\Customer:
+    type: entity
+    table: CUSTOMER
+    id:
+        account:
+            column: ACCT
+            type: string
+            length: 12
+            nullable: false
+            id: true
+    fields:
+        status:
+            column: STATUS
+            type: string
+            nullable: false
+            length: 1
+        firstName:
+            column: FN
+            type: string
+            length: 35
+            nullable: false
+        lastName:
+            column: LN
+            type: string
+            length: 35
+            nullable: false
+        address:
+            column: ADDR
+            type: string
+            length: 35
+            nullable: false
+        city:
+            column: CITY
+            type: string
+            length: 35
+            nullable: false
+        state:
+            column: STATE
+            type: string
+            length: 2
+            nullable: false
+    lifecycleCallbacks: {  }

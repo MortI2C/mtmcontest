@@ -1,0 +1,3 @@
+ibmmtm_homepage:
+    pattern:  /
+    defaults: { _controller: IBMMTMBundle:Default:index }
