@@ -1,17 +1,16 @@
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        IBM\MTMBundle\Entity\Users:
+          algorithm: bcrypt
+          cost: 15
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_CUSTOMER: [ROLE_USER]
+        ROLE_ADMIN: [ROLE_USER]
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        users:
+            entity: { class: "IBMMTMBundle:Users", property: username }
 
     firewalls:
         dev:
@@ -19,20 +18,27 @@ security:
             security: false
 
         login:
-            pattern:  ^/demo/secured/login$
+            pattern:  ^/login$
+            security: false
+            
+        recover:
+            pattern: ^/forgot$
             security: false
 
         secured_area:
-            pattern:    ^/demo/secured/
+            pattern:    ^/
             form_login:
-                check_path: _security_check
-                login_path: _demo_login
+                check_path: login_check
+                login_path: login
             logout:
-                path:   _demo_logout
-                target: _demo
+                path:   logout
+                target: /
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
 
     access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/forgot, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/atm, roles: ROLE_CUSTOMER, requires_channel: https }
+        - { path: ^/, roles: ROLE_ADMIN, requires_channel: https }

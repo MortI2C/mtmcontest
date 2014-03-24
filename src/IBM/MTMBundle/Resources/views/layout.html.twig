@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en"> 
+  <head>
+   {% block meta %}
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Flying Spaghetti Monster Bank">
+    <meta name="author" content="Mort_I2C">
+    <link rel="shortcut icon" href="{{ asset('images/fsm_favicon.png','bankapp') }}" type="image/jpeg" />
+    
+   {% endblock %}
+   {% block title %}
+    <title>Flying Spaghetti Monster Bank</title>
+   {% endblock %}
+   {% block stylesheet %}
+    <!-- Le styles -->
+    <link href="{{ asset('css/bootstrap.css', 'bankapp') }}" rel="stylesheet">
+    <link href="{{ asset('css/generic.css', 'bankapp') }}" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="{{ asset('js/html5shiv.js', 'bankapp') }}"></script>
+    <![endif]-->    
+   {% endblock %}
+  </head>
+  <body>
+   {% block menu %}
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="">FSM Bank</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+             {% block menusuperior %}
+              <li><a href="">Inici</a></li>
+              <!--  li><a href="#about">El meu perfil</a></li-->
+{#               {% if app.user.role == 'ROLE_ADMIN' %}#}
+{# 	              <li><a href="">Gestió d'usuaris</a></li>#}
+{#               {% endif %}#}
+{#               {% if app.user.role == 'ROLE_GESTOR' %}#}
+{# 	              <li><a href="{{ path('acta_pendents') }}">Actes pendents</a>#}
+{#               {% endif %}#}
+{#               {% if app.user.role != 'ROLE_USER' %}#}
+{#               <li><a href="{{ path('acta') }}">Gestió d'actes</a></li>#}
+{#               {% endif %}#}
+{#               {% if app.user.role == 'ROLE_ADMIN' %}#}
+{#                 <li><a href="{{ path('butlleta') }}">Butlletes</a></li>#}
+{#               {% endif %}#}
+             {% endblock %}
+            </ul>
+            <ul class="nav pull-right">
+{#               <li><a href="{{ path('usuaris_showSelf') }}">El meu perfil</a></li>#}
+              <li><a href="#" onclick="goBack()">Enrere</a></li>
+              <li><a href="{{ path('logout') }}">Sortir</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+   {% endblock %}
+    <div class="container">
+    {% block missatges %}
+	    {% if app.session.flashbag.has('error') is not empty %}
+	    <div class="bs-docs-example">
+	      <div class="alert alert-block alert-error fade in">
+	         <button type="button" class="close" data-dismiss="alert">&times;</button>
+	         <h4 class="alert-heading">Error!</h4>
+	         {% for flashMessage in app.session.flashbag.get('error') %}
+	   		 <p>
+	          {{ flashMessage }}
+			 </p>
+	         {% endfor %}
+	      </div>
+	    </div>
+	    {% endif %}
+		{% if app.session.flashbag.has('notice') %}
+	    <div class="bs-docs-example">
+	      <div class="alert alert-block alert-success fade in">
+	         <button type="button" class="close" data-dismiss="alert">&times;</button>
+	         {% for flashMessage in app.session.flashbag.get('notice') %}
+	   		 <p>
+	          {{ flashMessage }}
+			 </p>
+	         {% endfor %}
+	      </div>
+	    </div>
+	    {% endif %}
+    {% endblock %}
+   {% block body %}
+   {% endblock %}
+    </div> <!-- /container -->
+   
+  {% block javascript %}
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ asset('js/jquery-2.0.2.js', 'bankapp') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js', 'bankapp') }}"></script>
+    <script type="text/javascript">
+	  function goBack()
+	  {
+	    window.history.back();
+	  }
+    </script>
+{#     <script type="text/javascript">#}
+{# 	    $(document).ready(function() {#}
+{# 	    	$('button#delete').click(function(ev) {#}
+{# 	    		var href = $(this).attr('href');#}
+{# 	    		if (!$('#dataConfirmModal').length) {#}
+{# 	    			$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">Si us plau, confirma</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-danger" id="dataConfirmOK">Eliminar</a></div></div>');#}
+{# 	    		} #}
+{# 	    		$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));#}
+{# 	    		$('#dataConfirmOK').click(function() {#}
+{# 					$("form#delete").submit();#}
+{# 		        });#}
+{# 	    		$('#dataConfirmModal').modal({show:true});#}
+{# 	    		return false;#}
+{# 	    	});#}
+
+{# 	    	$('#confirmData').click(function(ev) {#}
+{# 	    		var href = $(this).attr('href');#}
+{# 	    		if (!$('#dataConfirmModal').length) {#}
+{# 	    			$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">Si us plau, confirma</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-success" id="dataConfirmOK">D\'acord</a></div></div>');#}
+{# 	    		} #}
+{# 	    		$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));#}
+{# 	    		$('#dataConfirmOK').attr('href',href);#}
+{# 	    		$('#dataConfirmModal').modal({show:true});#}
+{# 	    		return false;#}
+{# 	    	});#}
+
+{# 	    	$('.confirmData').click(function(ev) {#}
+{# 	    		var href = $(this).attr('href');#}
+{# 	    		if (!$('#dataConfirmModal').length) {#}
+{# 	    			$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">Si us plau, confirma</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-success" id="dataConfirmOK">D\'acord</a></div></div>');#}
+{# 	    		} #}
+{# 	    		$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));#}
+{# 	    		$('#dataConfirmOK').attr('href',href);#}
+{# 	    		$('#dataConfirmModal').modal({show:true});#}
+{# 	    		return false;#}
+{# 	    	});#}
+{# 	    });#}
+{#     </script>#}
+  {% endblock %}
+  </body>
+</html>

@@ -33,6 +33,12 @@ IBM\MTMBundle\Entity\Users:
             length: 255
             fixed: false
             comment: ''
+        email:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
         role:
             type: string
             nullable: false

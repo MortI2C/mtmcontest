@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+nav.horizontal-nav ul {
+	list-style-type: none;
+	margin-left: 0;
+}
+
+nav.horizontal-nav ul li {
+	display: inline;
+}
+
+th a.desc:after {
+	content: "▲";
+}
+
+th a.asc:after {
+	content: "▼";
+}

@@ -1,3 +1,18 @@
 ibmmtm_homepage:
     pattern:  /
-    defaults: { _controller: IBMMTMBundle:Default:index }
+    defaults: { _controller: "IBMMTMBundle:Default:index" }
+    
+login:
+    pattern: /login
+    defaults: { _controller: "IBMMTMBundle:Default:login" }
+
+login_check:
+    pattern: /login_check
+
+logout:
+    pattern: /logout
+    
+forgotpassword:
+    pattern: /forgot
+    defaults: { _controller: "IBMMTMBundle:Default:forgotPassword" }
+ 
