@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--[if IE 8]> 				 <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+  <head>  	
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<meta name="description" content="Flying Spaghetti Monster Bank"/>
+{# 	<meta name="keywords" content="Bank, FSM Bank" />#}
+	<meta name="author" content="Mort_I2C"/>
+    <link rel="shortcut icon" href="{{ asset('images/fsm_favicon.png', 'bankapp') }}"> 
+    
+	<title>Flying Spaghetti Monster Bank</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('css/bootstrap.css', 'bankapp') }}" rel="stylesheet">
+    <!-- Demo CSS -->
+    <!--link href="css/demo.css" rel="stylesheet"-->
+
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('css/login-theme-3.css', 'bankapp') }}" rel="stylesheet" id="fordemo">
+    
+    
+    
+    
+    <!--link href="css/animate-custom.css" rel="stylesheet"--> 
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+    
+     <script src="{{ asset('js/custom.modernizr.js', 'bankapp') }}" type="text/javascript" ></script>
+   
+  </head>
+    <body class="fade-in">
+    	<!-- start Login box -->
+    	<div class="container" id="login-block">
+    		<div class="row">
+			    <div class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
+			    	 
+			       <div class="login-box clearfix animated flipInY">
+			       		<div class="page-icon animated bounceInDown">
+			       			<img  src="{{ asset('images/user-icon.png', 'bankapp') }}" alt="Key icon" />
+			       		</div>
+			        	<div class="login-logo">
+			        		<a href="#"><img src="{{ asset('images/fsm.png', 'bankapp') }}" style="max-width: 159px;" alt="FSM Bank" /></a>
+			        	</div> 
+			        	<hr />
+			        	<div class="login-form">
+			        		<!-- Start Error box -->
+			        		{% if error %}
+			        		<div class="alert alert-danger">
+								  <button type="button" class="close" data-dismiss="alert"> &times;</button>
+								  <h4>Error!</h4>
+								   {{ error.message }}
+							</div> <!-- End Error box -->
+							{% endif %}
+			        		<form name="login-form" class="login-form" action="{{ path('login_check') }}" method="post">
+						   		 <input name="_username" id="username" type="text" placeholder="User name" class="input-field" required="true"/> 
+						   		 <input name="_password" id="password" type="password"  placeholder="Password" class="input-field" required="true"/> 
+					<!-- REDIRECT ON SUCCESS --><input type="hidden" name="_target_path" value="/" />	   
+								 <button type="submit" class="btn btn-login">Login</button> 
+							</form>	
+							<div class="login-links"> 
+					            <a href="{{ path('forgotpassword') }}">
+					          	   Forgot password?
+					            </a><br />
+							</div>      		
+			        	</div> 			        	
+			       </div> 
+			    </div>
+			</div>
+    	</div>
+     
+      	<!-- End Login box -->
+     	<footer class="container">
+     		<!--p id="footer-text"><small>Copyright &copy; 2014 Flying Spaghetti Monster Bank</small></p-->
+     	</footer>
+
+        <script src="{{ asset('js/jquery-2.0.2.js', 'bankapp') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js','bankapp') }}"></script> 
+        <script src="{{ asset('js/placeholder-shim.min.js', 'bankapp') }}"></script>        
+        <script src="{{ asset('js/login.js', 'bankapp') }}"></script>
+    </body>
+</html>

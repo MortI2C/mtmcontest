@@ -3,11 +3,12 @@
 namespace IBM\MTMBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Users
  */
-class Users
+class Users implements UserInterface, \Serializable
 {
     /**
      * @var integer
@@ -33,7 +34,11 @@ class Users
      * @var string
      */
     private $role;
-
+    
+    /**
+     * @var string
+     */
+    private $email;
 
     /**
      * Get id
@@ -135,5 +140,65 @@ class Users
     public function getRole()
     {
         return $this->role;
+    }
+	/* (non-PHPdoc)
+	 * @see \Symfony\Component\Security\Core\User\UserInterface::getRoles()
+	 */
+	public function getRoles() {
+		return array($this->role);
+	}
+
+	/* (non-PHPdoc)
+	 * @see \Symfony\Component\Security\Core\User\UserInterface::eraseCredentials()
+	 */
+	public function eraseCredentials() {
+
+	}
+	
+	public function __toString() {
+		return $this->username;
+	}
+	
+	/**
+	 * @see \Serializable::serialize()
+	 */
+	public function serialize()
+	{
+		return serialize(array(
+				$this->id,
+		));
+	}
+	
+	/**
+	 * @see \Serializable::unserialize()
+	 */
+	public function unserialize($serialized)
+	{
+		list (
+				$this->id,
+		) = unserialize($serialized);
+	}
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Users
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }
