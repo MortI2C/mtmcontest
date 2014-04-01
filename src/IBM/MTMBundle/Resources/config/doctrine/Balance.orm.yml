@@ -20,6 +20,6 @@ IBM\MTMBundle\Entity\Balance:
             targetEntity: Customer
             inversedBy: balance
             joinColumn:
-               name: acct
+               name: ACCT
                referencedColumnName: ACCT 
     lifecycleCallbacks: {  }

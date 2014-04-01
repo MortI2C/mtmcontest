@@ -5,7 +5,7 @@
  * By Sebastian Nitu - Copyright 2012 - All rights reserved
  * Author URL: http://sebnitu.com
  */
-(function($) {
+define(['jquery'], function($) {
 
     $.fn.horizontalNav = function(options) {
 

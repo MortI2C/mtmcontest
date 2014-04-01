@@ -15,4 +15,8 @@ logout:
 forgotpassword:
     pattern: /forgot
     defaults: { _controller: "IBMMTMBundle:Default:forgotPassword" }
+    
+ibmmtm_customer:
+    prefix: /customer
+    resource: "@IBMMTMBundle/Resources/config/routing/customer.yml" 
  

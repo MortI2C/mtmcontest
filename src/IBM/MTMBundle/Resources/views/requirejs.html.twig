@@ -1,0 +1,11 @@
+	<script src="{{ asset('vendor/requirejs/require.js', 'bankapp') }}"></script>
+	<script>
+	   requirejs.config({
+			baseUrl: "{{ asset('js', 'bankapp') }}",
+		 });
+		 
+	   require(['common'], function(common) {
+			require(['{{ module }}']);
+	   });
+	</script>
+	

@@ -45,4 +45,10 @@ IBM\MTMBundle\Entity\Users:
             length: 255
             fixed: false
             comment: ''
+    manyToOne:
+        customer:
+           targetEntity: Customer
+           joinColumn:
+              name: CUSTOMER
+              referencedColumnName: ACCT 
     lifecycleCallbacks: {  }

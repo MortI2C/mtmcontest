@@ -33,12 +33,18 @@ class Users implements UserInterface, \Serializable
     /**
      * @var string
      */
-    private $role;
-    
+    private $email;
+
     /**
      * @var string
      */
-    private $email;
+    private $role;
+
+    /**
+     * @var \IBM\MTMBundle\Entity\Customer
+     */
+    private $customer;
+
 
     /**
      * Get id
@@ -120,6 +126,29 @@ class Users implements UserInterface, \Serializable
     }
 
     /**
+     * Set email
+     *
+     * @param string $email
+     * @return Users
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
      * Set role
      *
      * @param string $role
@@ -140,6 +169,29 @@ class Users implements UserInterface, \Serializable
     public function getRole()
     {
         return $this->role;
+    }
+
+    /**
+     * Set customer
+     *
+     * @param \IBM\MTMBundle\Entity\Customer $customer
+     * @return Users
+     */
+    public function setCustomer(\IBM\MTMBundle\Entity\Customer $customer = null)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get customer
+     *
+     * @return \IBM\MTMBundle\Entity\Customer 
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
     }
 	/* (non-PHPdoc)
 	 * @see \Symfony\Component\Security\Core\User\UserInterface::getRoles()
@@ -179,26 +231,4 @@ class Users implements UserInterface, \Serializable
 		) = unserialize($serialized);
 	}
 
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return Users
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
 }

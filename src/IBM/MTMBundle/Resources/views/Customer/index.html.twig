@@ -1,0 +1,44 @@
+{% extends "IBMMTMBundle::layout.html.twig" %}
+{% block body %}
+  <h1>Customers list</h1>
+  {{ knp_pagination_filter(pagination, filtres, {'button': 'Search'}) }}
+  <br />
+  <div class="table-respnosive">
+	  <table class="table table-striped">
+	    <thead>
+	       <th{% if pagination.isSorted('c.account') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Account', 'c.account') }}</th>
+	       <th{% if pagination.isSorted('c.status') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Status', 'c.status') }}</th>
+	       <th{% if pagination.isSorted('c.firstName') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'First name', 'c.firstName') }}</th>
+	       <th{% if pagination.isSorted('c.lastName') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Last name', 'c.lastName') }}</th>
+	       <th{% if pagination.isSorted('c.address') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Address', 'c.address') }}</th>
+	       <th{% if pagination.isSorted('c.city') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'City', 'c.city') }}</th>
+	       <th{% if pagination.isSorted('c.state') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'State', 'c.state') }}</th>
+	       <th>Balance</th>
+	       <th>Actions</th>
+	    </thead>
+	    <tbody>
+	       {% for entity in pagination %}
+	       <tr>
+	         <td>{{ entity.account }}</td>
+	         <td>{% if entity.status == 'A' %}Active{% else %}Inactive{% endif %}</td>
+	         <td>{{ entity.firstName }}</td>
+	         <td>{{ entity.lastName }}</td>
+	         <td>{{ entity.address }}</td>
+	         <td>{{ entity.city }}</td>
+	         <td>{{ entity.state }}</td>
+	         <td>{% if entity.balance is not null %}{{ entity.balance.balance }}{% else %}0{% endif %} $</td>
+	         <td>
+	            <a href="{{ path('customer_setstatus', {'account': entity.account}) }}" class="btn {% if entity.status == 'A' %}btn-warning{% else %}btn-primary{% endif %}">
+	         	  {% if entity.status == 'A' %}Deactivate{% else %}Activate{% endif %}
+	         	</a>
+	         </td>
+	       </tr>
+	       {% endfor %}
+	    </tbody>
+	  </table>
+  </div>
+  <div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+  </div>
+  <a href="{{ path('customer_new') }}" class="btn btn-success">Create new customer</a>
+{% endblock %}

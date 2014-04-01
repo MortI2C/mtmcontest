@@ -9,7 +9,8 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-    	if($this->getUser()->getRole()=='ROLE_ADMIN')
+    	$curRole = $this->getUser()->getRole();
+    	if($curRole == 'ROLE_ADMIN' || $curRole == 'ROLE_MANAGER')
           return $this->render('IBMMTMBundle:Default:backend_index.html.twig');
     	else
     	  return $this->render('IBMMTMBundle:Default:atm_index.html.twig');
