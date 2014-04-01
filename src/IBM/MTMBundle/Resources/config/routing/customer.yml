@@ -1,0 +1,17 @@
+customer_setstatus:
+    pattern:  /{account}/setstatus
+    defaults: { _controller: "IBMMTMBundle:Customer:setStatus" }
+    
+customer:
+    pattern:  /
+    defaults: { _controller: "IBMMTMBundle:Customer:index" }
+    
+customer_new:
+    pattern:  /new
+    defaults: { _controller: "IBMMTMBundle:Customer:new" }
+    
+customer_create:
+    pattern:  /create
+    defaults: { _controller: "IBMMTMBundle:Customer:create" }
+    requirements:
+       _method: POST

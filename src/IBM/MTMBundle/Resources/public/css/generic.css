@@ -1,14 +1,5 @@
 @CHARSET "UTF-8";
 
-nav.horizontal-nav ul {
-	list-style-type: none;
-	margin-left: 0;
-}
-
-nav.horizontal-nav ul li {
-	display: inline;
-}
-
 th a.desc:after {
 	content: "▲";
 }
@@ -16,3 +7,13 @@ th a.desc:after {
 th a.asc:after {
 	content: "▼";
 }
+
+#content {
+	margin: 2em;
+}
+
+/*@media all and (min-width: 1400px) {
+  .form-control {
+    width: 15%;
+  }
+}*/

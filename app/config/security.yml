@@ -3,14 +3,15 @@ security:
         IBM\MTMBundle\Entity\Users:
           algorithm: bcrypt
           cost: 15
-
+          
     role_hierarchy:
         ROLE_CUSTOMER: [ROLE_USER]
-        ROLE_ADMIN: [ROLE_USER]
+        ROLE_ADMIN: [ROLE_MANAGER,ROLE_USER]
 
     providers:
         users:
             entity: { class: "IBMMTMBundle:Users", property: username }
+        
 
     firewalls:
         dev:
@@ -34,8 +35,7 @@ security:
                 path:   logout
                 target: /
             #anonymous: ~
-            #http_basic:
-            #    realm: "Secured Demo Area"
+           # http_basic: ~
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

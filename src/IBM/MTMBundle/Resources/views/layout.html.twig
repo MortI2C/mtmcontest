@@ -1,154 +1,106 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en"> 
-  <head>
-   {% block meta %}
+<html class="no-js" lang="en">
+<head>
+{% block meta %}
 	<meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Flying Spaghetti Monster Bank">
-    <meta name="author" content="Mort_I2C">
-    <link rel="shortcut icon" href="{{ asset('images/fsm_favicon.png','bankapp') }}" type="image/jpeg" />
-    
-   {% endblock %}
-   {% block title %}
-    <title>Flying Spaghetti Monster Bank</title>
-   {% endblock %}
-   {% block stylesheet %}
-    <!-- Le styles -->
-    <link href="{{ asset('css/bootstrap.css', 'bankapp') }}" rel="stylesheet">
-    <link href="{{ asset('css/generic.css', 'bankapp') }}" rel="stylesheet">
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="{{ asset('js/html5shiv.js', 'bankapp') }}"></script>
-    <![endif]-->    
-   {% endblock %}
-  </head>
-  <body>
-   {% block menu %}
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="">FSM Bank</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-             {% block menusuperior %}
-              <li><a href="">Inici</a></li>
-              <!--  li><a href="#about">El meu perfil</a></li-->
-{#               {% if app.user.role == 'ROLE_ADMIN' %}#}
-{# 	              <li><a href="">Gestió d'usuaris</a></li>#}
-{#               {% endif %}#}
-{#               {% if app.user.role == 'ROLE_GESTOR' %}#}
-{# 	              <li><a href="{{ path('acta_pendents') }}">Actes pendents</a>#}
-{#               {% endif %}#}
-{#               {% if app.user.role != 'ROLE_USER' %}#}
-{#               <li><a href="{{ path('acta') }}">Gestió d'actes</a></li>#}
-{#               {% endif %}#}
-{#               {% if app.user.role == 'ROLE_ADMIN' %}#}
-{#                 <li><a href="{{ path('butlleta') }}">Butlletes</a></li>#}
-{#               {% endif %}#}
-             {% endblock %}
-            </ul>
-            <ul class="nav pull-right">
-{#               <li><a href="{{ path('usuaris_showSelf') }}">El meu perfil</a></li>#}
-              <li><a href="#" onclick="goBack()">Enrere</a></li>
-              <li><a href="{{ path('logout') }}">Sortir</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-   {% endblock %}
-    <div class="container">
-    {% block missatges %}
-	    {% if app.session.flashbag.has('error') is not empty %}
-	    <div class="bs-docs-example">
-	      <div class="alert alert-block alert-error fade in">
-	         <button type="button" class="close" data-dismiss="alert">&times;</button>
-	         <h4 class="alert-heading">Error!</h4>
-	         {% for flashMessage in app.session.flashbag.get('error') %}
-	   		 <p>
-	          {{ flashMessage }}
-			 </p>
-	         {% endfor %}
-	      </div>
-	    </div>
-	    {% endif %}
-		{% if app.session.flashbag.has('notice') %}
-	    <div class="bs-docs-example">
-	      <div class="alert alert-block alert-success fade in">
-	         <button type="button" class="close" data-dismiss="alert">&times;</button>
-	         {% for flashMessage in app.session.flashbag.get('notice') %}
-	   		 <p>
-	          {{ flashMessage }}
-			 </p>
-	         {% endfor %}
-	      </div>
-	    </div>
-	    {% endif %}
-    {% endblock %}
-   {% block body %}
-   {% endblock %}
-    </div> <!-- /container -->
-   
-  {% block javascript %}
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{ asset('js/jquery-2.0.2.js', 'bankapp') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js', 'bankapp') }}"></script>
-    <script type="text/javascript">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Master The Mainframe Bank">
+	<meta name="author" content="Mort_I2C">
+	<link rel="shortcut icon"
+		href="{{ asset('images/atm.png','bankapp') }}"
+		type="image/jpeg" />
+	
+	{% endblock %} {% block title %}
+	<title>Master The Mainframe Bank</title> {% endblock %} {% block
+	stylesheet %}
+	<!-- Le styles -->
+	<link href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css', 'bankapp') }}"
+		rel="stylesheet">
+	<link href="{{ asset('css/generic.css', 'bankapp') }}" rel="stylesheet">
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	      <script async src="{{ asset('vendor/html5shiv/dist/html5shiv.js', 'bankapp') }}"></script>
+	    <![endif]-->
+{% endblock %}
+</head>
+<body>
+	{% block menu %}
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">MTM Bank</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+				  {% if app.user.role == 'ROLE_ADMIN' %}
+					<li class="active"><a href="#">Customers</a></li>
+					<li><a href="#">Users</a></li>
+					<li><a href="#">Transactions</a></li>
+				  {% endif %}
+				</ul>
+				
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="{{ path('logout') }}">Logout</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+	{% endblock %}
+	<div id="content">
+		{% block missatges %}
+			{% if app.session.flashbag.has('error') is not empty %}
+			<div class="alert alert-danger alert-dismissable">
+  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  				<p><strong>Error!</strong> The following errors ocurred:</p>
+  				{% for flashMessage in app.session.flashbag.get('error') %}
+					<p>{{ flashMessage }}</p>
+				{% endfor %}
+			</div>
+			{% endif %}
+			{% if app.session.flashbag.has('success') %}
+			<div class="alert alert-success alert-dismissable">
+  				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  				<p><strong>Success</strong></p>
+  				{% for flashMessage in app.session.flashbag.get('success') %}
+					<p>{{ flashMessage }}</p>
+				{% endfor %}
+			</div>
+			{% endif %}
+		{% endblock %}
+		{% block body %} 
+		
+		{% endblock %}
+	</div>
+	<!-- /container -->
+
+	{% block javascript %}
+{# 	<!-- Le javascript#}
+{#     ================================================== -->#}
+{# 	<!-- Placed at the end of the document so the pages load faster -->#}
+{# 	<script src="{{ asset('vendor/jquery/dist/jquery.min.js', 'bankapp') }}"></script>#}
+{# 	<script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.min.js', 'bankapp') }}"></script>#}
+	<script async type="text/javascript">
 	  function goBack()
 	  {
 	    window.history.back();
 	  }
     </script>
-{#     <script type="text/javascript">#}
-{# 	    $(document).ready(function() {#}
-{# 	    	$('button#delete').click(function(ev) {#}
-{# 	    		var href = $(this).attr('href');#}
-{# 	    		if (!$('#dataConfirmModal').length) {#}
-{# 	    			$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">Si us plau, confirma</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-danger" id="dataConfirmOK">Eliminar</a></div></div>');#}
-{# 	    		} #}
-{# 	    		$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));#}
-{# 	    		$('#dataConfirmOK').click(function() {#}
-{# 					$("form#delete").submit();#}
-{# 		        });#}
-{# 	    		$('#dataConfirmModal').modal({show:true});#}
-{# 	    		return false;#}
-{# 	    	});#}
-
-{# 	    	$('#confirmData').click(function(ev) {#}
-{# 	    		var href = $(this).attr('href');#}
-{# 	    		if (!$('#dataConfirmModal').length) {#}
-{# 	    			$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">Si us plau, confirma</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-success" id="dataConfirmOK">D\'acord</a></div></div>');#}
-{# 	    		} #}
-{# 	    		$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));#}
-{# 	    		$('#dataConfirmOK').attr('href',href);#}
-{# 	    		$('#dataConfirmModal').modal({show:true});#}
-{# 	    		return false;#}
-{# 	    	});#}
-
-{# 	    	$('.confirmData').click(function(ev) {#}
-{# 	    		var href = $(this).attr('href');#}
-{# 	    		if (!$('#dataConfirmModal').length) {#}
-{# 	    			$('body').append('<div id="dataConfirmModal" class="modal" role="dialog" aria-labelledby="dataConfirmLabel" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="dataConfirmLabel">Si us plau, confirma</h3></div><div class="modal-body"></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button><a class="btn btn-success" id="dataConfirmOK">D\'acord</a></div></div>');#}
-{# 	    		} #}
-{# 	    		$('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));#}
-{# 	    		$('#dataConfirmOK').attr('href',href);#}
-{# 	    		$('#dataConfirmModal').modal({show:true});#}
-{# 	    		return false;#}
-{# 	    	});#}
-{# 	    });#}
-{#     </script>#}
-  {% endblock %}
-  </body>
+	{% endblock %}
+	{% block requirejs %}
+		{{ include('IBMMTMBundle::requirejs.html.twig', {'module': 'utilities'}) }}
+	{% endblock %}
+</body>
 </html>

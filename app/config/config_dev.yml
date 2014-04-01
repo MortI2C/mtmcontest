@@ -32,5 +32,14 @@ monolog:
 assetic:
     use_controller: true
 
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     localhost
+        port:     null
+        dbname:   mtmcontest
+        user:     root
+        password: f4r0l4d8
+        charset:  UTF8
 #swiftmailer:
 #    delivery_address: me@example.com

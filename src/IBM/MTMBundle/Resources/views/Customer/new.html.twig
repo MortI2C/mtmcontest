@@ -1,0 +1,11 @@
+{% extends "IBMMTMBundle::layout.html.twig" %}
+{% block body %}
+  <h1>New Customer</h1>
+	{{ form(form) }}
+
+  <a class="btn btn-warning" href="#" onclick="javascript:goBack()">Back</a>
+{% endblock %}
+
+{% block requirejs %}
+	{{ include('IBMMTMBundle::requirejs.html.twig', {'module': 'newcustomer'}) }}
+{% endblock %}
