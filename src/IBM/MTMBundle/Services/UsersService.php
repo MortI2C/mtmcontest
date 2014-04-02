@@ -73,7 +73,7 @@ class UsersService {
 		$form = $this->formFactory->create(new UsersType(), $user, array('action' => $this->router->generate('users_create')));
 		if($request->isMethod("POST")) {
 			$form->bind($request);
-			
+				
 			$entities = $this->em->getRepository('IBMMTMBundle:Users')
 				->findByUsername($user->getUsername());
 			if($entities) {
@@ -140,8 +140,9 @@ class UsersService {
 			{
 				$form->get('customer')->addError(new FormError('Role customer needs a customer entity assigned!'));
 			}
-			
+
 			if($form->isValid()) {
+				exit('hello');
 				$password = $form->get('password')->getData();
 				$encoder = $factory->getEncoder($user);
 				if($password != "") {

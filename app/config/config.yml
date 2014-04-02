@@ -57,7 +57,7 @@ doctrine:
               dbname:   "%database_name%"
               user:     "%database_user%"
               password: "%database_password%"
-              persistent: true
+              persistent: false
               charset:  UTF8
            dev:
               driver:   pdo_mysql
