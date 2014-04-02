@@ -1,0 +1,22 @@
+{% extends 'IBMMTMBundle::layout.html.twig' %}
+
+{% block body -%}
+    <h1>Edit user</h1>
+    {% form_theme form 'IBMMTMBundle::form_errors.html.twig' %}
+    {{ form(form) }}
+
+{#      <form name="form" method="post" action="{{ path('users_delete', {'id': entity.id}) }}" role="form" class="confirm-form">#}
+{#      	<input type="hidden" name="_method" value="DELETE" />#}
+{#      	<div id="form" role="form">#}
+{# 	     	<div>#}
+{# 	     	    <a href="{{ path('users') }}" class="btn btn-warning">Back to the list</a>#}
+{# 	     	    <button type="submit" id="form_submit" name="form[submit]" class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete" data-title="Delete User" data-message="Are you sure you want to delete this user ?">Delete</button>#}
+{# 	     	</div>#}
+{# 	     	{{ form_widget(delete_form._token) }}#}
+{#      	</div>#}
+{#      </form>#}
+{% endblock %}
+
+{% block requirejs %}
+	{{ include('IBMMTMBundle::requirejs.html.twig', {'module': 'formsstyles'}) }}
+{% endblock %}

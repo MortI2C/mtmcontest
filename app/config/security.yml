@@ -6,7 +6,7 @@ security:
           
     role_hierarchy:
         ROLE_CUSTOMER: [ROLE_USER]
-        ROLE_ADMIN: [ROLE_MANAGER,ROLE_USER]
+        ROLE_ADMIN: [ROLE_MANAGER,ROLE_CUSTOMER]
 
     providers:
         users:
@@ -41,4 +41,5 @@ security:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/forgot, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/atm, roles: ROLE_CUSTOMER, requires_channel: https }
-        - { path: ^/, roles: ROLE_ADMIN, requires_channel: https }
+        - { path: ^/backend, roles: ROLE_ADMIN, requires_channel: https }
+        - { path: ^/, roles: ROLE_CUSTOMER, requires_channel: https }

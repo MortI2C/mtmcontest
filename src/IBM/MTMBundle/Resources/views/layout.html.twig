@@ -35,7 +35,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">MTM Bank</a>
+				<a class="navbar-brand" class="{% if app.request.attributes.get('_route') == 'ibmmtm_homepage' %}active{% endif %}" href="{{ path('ibmmtm_homepage') }}">MTM Bank</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -43,9 +43,9 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 				  {% if app.user.role == 'ROLE_ADMIN' %}
-					<li class="active"><a href="#">Customers</a></li>
-					<li><a href="#">Users</a></li>
-					<li><a href="#">Transactions</a></li>
+					<li class="{% if app.request.attributes.get('_route') == 'customer' %}active{% endif %}"><a href="{{ path('customer') }}">Customers</a></li>
+					<li class="{% if app.request.attributes.get('_route') == 'users' %}active{% endif %}"><a href="{{ path('users') }}">Users</a></li>
+					<li class="{% if app.request.attributes.get('_route') == 'trans' %}active{% endif %}"><a href="{{ path('trans') }}">Transactions</a></li>
 				  {% endif %}
 				</ul>
 				
@@ -79,6 +79,24 @@
 				{% endfor %}
 			</div>
 			{% endif %}
+			<!-- Confirm modal dialog -->
+			<div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title">Delete Parmanently</h4>
+			      </div>
+			      <div class="modal-body">
+			        <p>Are you sure about this?</p>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			        <button type="button" class="btn btn-danger" id="confirm">Delete</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
 		{% endblock %}
 		{% block body %} 
 		

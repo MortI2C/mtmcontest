@@ -261,4 +261,9 @@ class Customer
     {
         return $this->pin;
     }
+    
+    public function __toString()
+    {
+    	return $this->firstName.' '.$this->lastName;
+    }
 }

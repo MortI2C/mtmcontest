@@ -1,0 +1,3 @@
+trans:
+    pattern:  /
+    defaults: { _controller: "IBMMTMBundle:Trans:index" }

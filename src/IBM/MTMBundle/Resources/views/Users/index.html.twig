@@ -1,0 +1,45 @@
+{% extends "IBMMTMBundle::layout.html.twig" %}
+{% block body %}
+ {% if pagination.getTotalItemCount > 0 %}
+  <h1>Listing {{ pagination.getTotalItemCount }} users</h1>
+  {{ knp_pagination_filter(pagination, filtres, {'button': 'Search'}) }}
+  <br />
+  <div class="table-respnosive">
+	  <table class="table table-striped">
+	    <thead>
+	       <th{% if pagination.isSorted('u.username') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Username', 'c.username') }}</th>
+	       <th{% if pagination.isSorted('u.email') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'E-mail', 'c.email') }}</th>
+	       <th{% if pagination.isSorted('u.role') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Role', 'c.role') }}</th>
+	       <th>Account assigned</th>
+	       <th>Actions</th>
+	    </thead>
+	    <tbody>
+	       {% for entity in pagination %}
+	       <tr>
+	         <td>{{ entity.username }}</td>
+	         <td>{{ entity.email }}</td>
+	         <td>{% if entity.role == 'ROLE_ADMIN' %}Bank manager{% else %}Customer{% endif %}</td>
+	         <td>{% if entity.customer is null %}None{% else %}{{ entity.customer.account }}{% endif %}</td>
+	         <td>
+	            <a href="{{ path('users_edit', {'id': entity.id}) }}" class="btn btn-warning">
+	         	  Edit
+	         	</a>
+	         	<form action="{{ path('users_delete', {'id': entity.id}) }}" method="post" class="confirm-form" style="display: inline;">
+	         	  <input type="hidden" name="_method" value="DELETE" />
+	         	  <input type="hidden" id="id" value="{{ entity.id }}">
+	         	  <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete" data-title="Delete user" data-message="Are you sure you want to delete this user?">Delete</button>
+	         	</form>
+	         </td>
+	       </tr>
+	       {% endfor %}
+	    </tbody>
+	  </table>
+  </div>
+  <div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+  </div>
+  {% else %}
+  <h1>There are no users</h1>
+  {% endif %}
+  <a href="{{ path('users_create') }}" class="btn btn-success">Create new user</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{# src/IBM/MTMBundle/Form/form_errors.html.twig #}
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+        <div>
+	        <span style="padding: .5em;" class="bg-danger">Error: 
+	            {% for error in errors %}
+	                <b>{{ error.message }}</b>&nbsp;&nbsp;
+	            {% endfor %}
+	        </span>
+        </div>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}

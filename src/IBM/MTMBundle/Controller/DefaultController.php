@@ -11,9 +11,14 @@ class DefaultController extends Controller
     {
     	$curRole = $this->getUser()->getRole();
     	if($curRole == 'ROLE_ADMIN' || $curRole == 'ROLE_MANAGER')
-          return $this->render('IBMMTMBundle:Default:backend_index.html.twig');
+          return $this->redirect($this->generateUrl('backend'));
     	else
-    	  return $this->render('IBMMTMBundle:Default:atm_index.html.twig');
+    	  return $this->redirect($this->generateUrl('atm'));
+    }
+    
+    public function backendAction()
+    {
+    	return $this->render('IBMMTMBundle:Default:backend_index.html.twig');
     }
     
     public function loginAction()

@@ -1,5 +1,7 @@
 parameters:
     ibmmtm.customerservice.class: IBM\MTMBundle\Services\CustomerService
+    ibmmtm.usersservice.class: IBM\MTMBundle\Services\UsersService
+    ibmmtm.atmservice.class: IBM\MTMBundle\Services\ATMService
 
 services:
     ibmmtm.customerservice:
@@ -10,3 +12,11 @@ services:
         class: IBM\MTMBundle\Form\CustomerType
         tags:
             - { name: form.type, alias: customer_type }
+            
+    ibmmtm.usersservice:
+        class: "%ibmmtm.usersservice.class%"
+        arguments: ["@doctrine.orm.entity_manager", "@session", "@templating", "@form.factory", "@router"]
+        
+    ibmmtm.atmservice:
+        class: "%ibmmtm.atmservice.class%"
+        arguments: ["@doctrine.orm.entity_manager", "@session", "@templating", "@form.factory", "@router", "@security.context"]
