@@ -10,8 +10,24 @@ customer_new:
     pattern:  /new
     defaults: { _controller: "IBMMTMBundle:Customer:new" }
     
+customer_edit:
+    pattern:  /edit/{account}
+    defaults: { _controller: "IBMMTMBundle:Customer:edit" }
+    
+customer_update:
+    pattern:  /update/{account}
+    defaults: { _controller: "IBMMTMBundle:Customer:update" }
+    requirements:
+       _method: POST
+       
 customer_create:
     pattern:  /create
     defaults: { _controller: "IBMMTMBundle:Customer:create" }
     requirements:
        _method: POST
+       
+customer_delete:
+    pattern:  /delete/{account}
+    defaults: { _controller: "IBMMTMBundle:Customer:delete" }
+    requirements:
+       _method: DELETE

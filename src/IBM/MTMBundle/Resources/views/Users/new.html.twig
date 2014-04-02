@@ -1,0 +1,13 @@
+{% extends 'IBMMTMBundle::layout.html.twig' %}
+
+{% block body%}
+    <h1>Create new user</h1>
+	{% form_theme form 'IBMMTMBundle::form_errors.html.twig' %}
+    {{ form(form) }}
+
+    <a href="{{ path('users') }}" class="btn btn-warning">Back to the list</a>
+{% endblock %}
+
+{% block requirejs %}
+	{{ include('IBMMTMBundle::requirejs.html.twig', {'module': 'formsstyles'}) }}
+{% endblock %}

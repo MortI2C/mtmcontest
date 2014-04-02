@@ -1,0 +1,35 @@
+{% extends "IBMMTMBundle::layout.html.twig" %}
+{% block body %}
+ {% if pagination.getTotalItemCount > 0 %}
+  <h1>Listing {{ pagination.getTotalItemCount }} transactions</h1>
+  {{ knp_pagination_filter(pagination, filtres, {'button': 'Search'}) }}
+  <br />
+  <div class="table-respnosive">
+	  <table class="table table-striped">
+	    <thead>
+	       <th{% if pagination.isSorted('t.account') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Account', 't.account') }}</th>
+	       <th{% if pagination.isSorted('t.type') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Type', 't.type') }}</th>
+	       <th{% if pagination.isSorted('t.amount') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Amount', 't.amount') }}</th>
+	       <th{% if pagination.isSorted('t.timeStart') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Time start', 't.timeStar') }}</th>
+	       <th{% if pagination.isSorted('t.timeEnd') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Time end', 't.timeEnd') }}</th>
+	    </thead>
+	    <tbody>
+	       {% for entity in pagination %}
+	       <tr>
+	         <td>{{ entity.account }}</td>
+	         <td>{% if entity.type == 'D' %}Deposit{% else %}Withdrawal{% endif %}</td>
+	         <td>{{ entity.amount }}</td>
+	         <td>{{ entity.timeStart | date('Y-m-d H:i:s.u') }}
+	         <td>{{ entity.timeEnd | date('Y-m-d H:i:s.u') }}
+	       </tr>
+	       {% endfor %}
+	    </tbody>
+	  </table>
+  </div>
+  <div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+  </div>
+  {% else %}
+  <h1>There are no transactions</h1>
+  {% endif %}
+{% endblock %}

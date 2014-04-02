@@ -1,0 +1,15 @@
+backend:
+    pattern:  /
+    defaults: { _controller: "IBMMTMBundle:Default:backend" }
+
+ibmmtm_customer:
+    prefix: /customer
+    resource: "@IBMMTMBundle/Resources/config/routing/customer.yml" 
+    
+ibmmtm_users:
+        resource: "@IBMMTMBundle/Resources/config/routing/users.yml"
+        prefix:   /users
+    
+ibmmtm_trans:
+        resource: "@IBMMTMBundle/Resources/config/routing/trans.yml"
+        prefix:   /trans    

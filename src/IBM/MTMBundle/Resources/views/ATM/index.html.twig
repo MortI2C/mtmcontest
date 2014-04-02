@@ -1,0 +1,47 @@
+{% extends "IBMMTMBundle::layout.html.twig" %}
+{% block body %}
+ <h1>Personal data</h1>
+ <table class="table table-striped">
+   <tr>
+      <th>Username</th>
+      <td>{{ user.username }}</td>
+   </tr>
+   <tr>
+      <th>Email</th>
+      <td>{{ user.email }}</td>
+   </tr>
+   <tr>
+      <th>Account number</th>
+      <td>{{ user.customer.account }}</td>
+   </tr>
+   <tr>
+      <th>Balance</th>
+      <td>{{ user.customer.balance.balance }} $</td>
+   </tr>
+   <tr>
+      <th>First name</th>
+      <td>{{ user.customer.firstName }}</td>
+   </tr>
+   <tr>
+      <th>Last name</th>
+      <td>{{ user.customer.lastName }}</td>
+   </tr>
+   <tr>
+      <th>Address</th>
+      <td>{{ user.customer.address }}</td>
+   </tr>
+   <tr>
+      <th>City</th>
+      <td>{{ user.customer.city }}</td>
+   </tr>
+   <tr>
+      <th>State</th>
+      <td>{{ user.customer.state }}</td>
+   </tr>
+ </table>
+ {% form_theme form 'IBMMTMBundle::form_errors.html.twig' %}
+ {{ form(form, {'attr': {'class': 'form-inline'}}) }}
+{% endblock %}
+{% block requirejs %}
+	{{ include('IBMMTMBundle::requirejs.html.twig', {'module': 'formsstyles'}) }}
+{% endblock %}

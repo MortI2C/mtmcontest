@@ -1,0 +1,29 @@
+users:
+    pattern:  /
+    defaults: { _controller: "IBMMTMBundle:Users:index" }
+
+#users_show:
+#    pattern:  /{id}/show
+#    defaults: { _controller: "IBMMTMBundle:Users:show" }
+
+#users_new:
+#    pattern:  /new
+#    defaults: { _controller: "IBMMTMBundle:Users:new" }
+
+users_create:
+    pattern:  /create
+    defaults: { _controller: "IBMMTMBundle:Users:create" }
+
+users_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "IBMMTMBundle:Users:edit" }
+
+#users_update:
+#    pattern:  /{id}/update
+#    defaults: { _controller: "IBMMTMBundle:Users:update" }
+#    requirements: { _method: post|put }
+
+users_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "IBMMTMBundle:Users:delete" }
+    requirements: { _method: post|delete }

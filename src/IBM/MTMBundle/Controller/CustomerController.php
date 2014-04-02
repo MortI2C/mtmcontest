@@ -58,6 +58,18 @@ class CustomerController extends Controller
     public function createAction(Request $request)
     {
 	    	$customerService = $this->get('ibmmtm.customerservice');
-	    	return $customerService->createUser($request);
+	    	return $customerService->createCustomer($request, $this->container->get('security.encoder_factory'));
+    }
+    
+    public function editAction(Request $request, $account)
+    {
+    	$customerService = $this->get('ibmmtm.customerservice');
+    	return $customerService->editCustomer($request, $account);
+    }
+    
+    public function deleteAction(Request $request, $account)
+    {
+    	$customerService = $this->get('ibmmtm.customerservice');
+    	return $customerService->deleteCustomer($request, $account);
     }
 }

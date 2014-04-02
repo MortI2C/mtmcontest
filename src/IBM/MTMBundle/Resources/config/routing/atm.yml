@@ -1,0 +1,9 @@
+atm:
+    pattern:  /
+    defaults: { _controller: "IBMMTMBundle:ATM:index" }
+    
+transaction:
+    pattern:  /transaction
+    defaults: { _controller: "IBMMTMBundle:ATM:transaction" }
+    requirements:
+      _method: POST

@@ -1,6 +1,7 @@
 {% extends "IBMMTMBundle::layout.html.twig" %}
 {% block body %}
-  <h1>Customers list</h1>
+ {% if pagination.getTotalItemCount > 0 %}
+  <h1>Listing {{ pagination.getTotalItemCount }} customers</h1>
   {{ knp_pagination_filter(pagination, filtres, {'button': 'Search'}) }}
   <br />
   <div class="table-respnosive">
@@ -28,9 +29,15 @@
 	         <td>{{ entity.state }}</td>
 	         <td>{% if entity.balance is not null %}{{ entity.balance.balance }}{% else %}0{% endif %} $</td>
 	         <td>
+	         	<a href="{{ path('customer_edit', {'account': entity.account}) }}" class="btn btn-success">Edit</a>
 	            <a href="{{ path('customer_setstatus', {'account': entity.account}) }}" class="btn {% if entity.status == 'A' %}btn-warning{% else %}btn-primary{% endif %}">
 	         	  {% if entity.status == 'A' %}Deactivate{% else %}Activate{% endif %}
 	         	</a>
+	         	<form action="{{ path('customer_delete', {'account': entity.account}) }}" method="post" class="confirm-form" style="display: inline;">
+	         	  <input type="hidden" name="_method" value="DELETE" />
+	         	  <input type="hidden" id="account" value="{{ entity.account }}">
+	         	  <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete" data-title="Delete customer" data-message="Are you sure you want to delete this customer?">Delete</button>
+	         	</form>
 	         </td>
 	       </tr>
 	       {% endfor %}
@@ -40,5 +47,8 @@
   <div class="navigation">
     {{ knp_pagination_render(pagination) }}
   </div>
+  {% else %}
+  <h1>There are no customers</h1>
+  {% endif %}
   <a href="{{ path('customer_new') }}" class="btn btn-success">Create new customer</a>
 {% endblock %}
