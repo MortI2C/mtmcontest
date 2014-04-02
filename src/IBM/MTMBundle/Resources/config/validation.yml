@@ -1,0 +1,47 @@
+IBM\MTMBundle\Entity\Customer:
+   properties:
+     account:
+        - NotBlank: ~
+        - Regex:
+             pattern: "/\d{12}/"
+             message: The account must be a 12 digits number      
+     status:
+        - NotBlank: ~
+        - Choice:
+             choices: [A,I]
+             message: The status must be active or inactive
+     firstName:
+        - NotBlank: ~
+     lastName:
+        - NotBlank: ~
+     address:
+        - NotBlank: ~
+     city:
+        - NotBlank: ~
+     state:
+        - NotBlank: ~
+        - Regex:
+             pattern: "/[A-Z][A-Z]/"
+             message: The state must have 2 uppercase letters
+             
+IBM\MTMBundle\Entity\Users:
+   properties:
+     username:
+        - NotBlank: ~
+     email:
+        - NotBlank: ~
+        - Email: 
+             message: The email "{{ value }}" is not valid
+             checkMX: true
+             checkHost: true          
+     password:
+        - NotBlank: ~
+        - Length:
+             min: 6
+             minMessage: The password must be at least of 6 alphanumeric characters
+     role:
+        - NotBlank: ~
+        - Choice:
+             choices: [ROLE_ADMIN,ROLE_CUSTOMER]
+             message: The role must be admin or customer 
+             
