@@ -38,8 +38,8 @@ doctrine:
         host:     localhost
         port:     null
         dbname:   mtmcontest
-        user:     root
-        password: f4r0l4d8
+        user:     dev
+        password: dev123
         charset:  UTF8
 #swiftmailer:
 #    delivery_address: me@example.com

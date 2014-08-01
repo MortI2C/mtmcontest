@@ -29,8 +29,8 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
 	public function load(ObjectManager $manager)
 	{
 		$user = new Users();
-		$user->setEmail('mort.cruel@gmail.com');
-		$user->setUsername('Mort');
+		$user->setEmail('test@gmail.com');
+		$user->setUsername('Test');
 		$user->setRole('ROLE_ADMIN');
 		$encoder = $this->container
 			->get('security.encoder_factory')
@@ -38,7 +38,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
 		
 		mt_srand(microtime(true)*100000 + memory_get_usage(true));
 		$user->setSalt(md5(uniqid(mt_rand(), true)));		
-		$user->setPassword($encoder->encodePassword('f4r0l4d8', $user->getSalt()));
+		$user->setPassword($encoder->encodePassword('test123', $user->getSalt()));
 		
 		$customer = $manager->getRepository('IBMMTMBundle:Customer')->findOneByAccount('111111111111');
 		$user->setCustomer($customer);
